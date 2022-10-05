@@ -1,8 +1,10 @@
-<?php namespace League\Fractal\Test\Stub\Transformer;
+<?php
+
+namespace League\Fractal\Test\Stub\Transformer;
 
 use League\Fractal\TransformerAbstract;
 
-class GenericBookTransformer extends TransformerAbstract
+class GenericBookNoResourceKeyTransformer extends TransformerAbstract
 {
     protected array $availableIncludes = [
         'author',
@@ -22,6 +24,6 @@ class GenericBookTransformer extends TransformerAbstract
             return;
         }
 
-        return $this->item($book['_author'], new GenericAuthorTransformer(), 'author');
+        return $this->item($book['_author'], new GenericAuthorTransformer());
     }
 }

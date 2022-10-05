@@ -2,9 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/release/thephpleague/fractal.svg?style=flat-square)](https://github.com/thephpleague/fractal/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://img.shields.io/travis/thephpleague/fractal/master.svg?style=flat-square)](https://travis-ci.org/thephpleague/fractal)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/fractal.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/fractal/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/fractal.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/fractal)
+![The PHP League Tests](https://github.com/thephpleague/fractal/workflows/The%20PHP%20League%20Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/fractal.svg?style=flat-square)](https://packagist.org/packages/league/fractal)
 
 Fractal provides a presentation and transformation layer for complex data output, the like found in
@@ -41,15 +39,9 @@ $ composer require league/fractal
 
 ## Requirements
 
-The following versions of PHP are supported by this version.
+The following versions of PHP are supported by this version:
 
-* PHP 5.4
-* PHP 5.5
-* PHP 5.6
-* PHP 7.0
-* PHP 7.1
-* PHP 7.2
-* HHVM
+&gt;= PHP 7.4
 
 ## Documentation
 

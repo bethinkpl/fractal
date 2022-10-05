@@ -1,5 +1,7 @@
 <?php namespace League\Fractal\Test;
 
+use BadMethodCallException;
+use Exception;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -72,6 +74,16 @@ class TransformerAbstractTest extends TestCase
         $this->assertSame($transformer->getCurrentScope(), $scope);
     }
 
+    /**
+     * @covers \League\Fractal\TransformerAbstract::getCurrentScope
+     */
+    public function testCanAccessScopeBeforeInitialization()
+    {
+        $transformer = $this->getMockForAbstractClass('League\Fractal\TransformerAbstract');
+        $currentScope = $transformer->getCurrentScope();
+        $this->assertNull($currentScope);
+    }
+
     public function testProcessEmbeddedResourcesNoAvailableIncludes()
     {
         $transformer = m::mock('League\Fractal\TransformerAbstract')->makePartial();
@@ -97,10 +109,11 @@ class TransformerAbstractTest extends TestCase
     /**
      * @covers \League\Fractal\TransformerAbstract::processIncludedResources
      * @covers \League\Fractal\TransformerAbstract::callIncludeMethod
-     * @expectedException \BadMethodCallException
      */
     public function testProcessEmbeddedResourcesInvalidAvailableEmbed()
     {
+		$this->expectException(BadMethodCallException::class);
+
         $transformer = m::mock('League\Fractal\TransformerAbstract')->makePartial();
 
         $manager = new Manager();
@@ -116,10 +129,11 @@ class TransformerAbstractTest extends TestCase
     /**
      * @covers \League\Fractal\TransformerAbstract::processIncludedResources
      * @covers \League\Fractal\TransformerAbstract::callIncludeMethod
-     * @expectedException \BadMethodCallException
      */
     public function testProcessEmbeddedResourcesInvalidDefaultEmbed()
     {
+		$this->expectException(BadMethodCallException::class);
+
         $transformer = m::mock('League\Fractal\TransformerAbstract')->makePartial();
 
         $manager = new Manager();
@@ -228,11 +242,11 @@ class TransformerAbstractTest extends TestCase
 
     /**
      * @covers \League\Fractal\TransformerAbstract::callIncludeMethod
-     * @expectedException \Exception
-     * @expectedExceptionMessage Invalid return value from League\Fractal\TransformerAbstract::includeBook().
      */
     public function testCallEmbedMethodReturnsCrap()
     {
+		$this->expectExceptionObject(new Exception('Invalid return value from League\Fractal\TransformerAbstract::includeBook().'));
+
         $manager = new Manager();
         $manager->parseIncludes('book');
         $transformer = m::mock('League\Fractal\TransformerAbstract[transform]');
@@ -369,7 +383,7 @@ class TransformerAbstractTest extends TestCase
         $this->assertInstanceOf('League\Fractal\Resource\Collection', $collection);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

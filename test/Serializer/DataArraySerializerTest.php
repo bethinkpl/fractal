@@ -6,6 +6,8 @@ use League\Fractal\Resource\Item;
 use League\Fractal\Resource\NullResource;
 use League\Fractal\Scope;
 use League\Fractal\Serializer\DataArraySerializer;
+use League\Fractal\Test\Stub\Serializer\RootSerializer;
+use League\Fractal\Test\Stub\Transformer\GenericBookNoResourceKeyTransformer;
 use League\Fractal\Test\Stub\Transformer\GenericBookTransformer;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -355,7 +357,16 @@ class DataArraySerializerTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function tearDown()
+    public function testCanPassNullValueToSerializer()
+    {
+        $testClass = new \stdClass();
+        $testClass->name = 'test';
+        $testClass->email = 'test@test.com';
+
+
+    }
+
+    public function tearDown(): void
     {
         Mockery::close();
     }
